@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="build/app.bundle.js"></script>
+    </head>
+    <body ng-app="app" layout="column">
+    <div layout="column" ng-controller="AppController as ac" ng-cloak ng-init="ac.init()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 flex>Todo list</h2>
+                <md-menu md-offset="0 10">
+                    <md-button aria-label="Open menu" class="md-icon-button" ng-click="ac.openMenu($mdOpenMenu, $event)">
+                        <md-icon  class="material-icons">&#xE8B8;</md-icon>
+                    </md-button>
+                    <md-menu-content>
+                        <md-menu-item>
+                            <md-button ng-click="ac.addTodo($event)">
+                                Add new todo
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="ac.deleteTodos()">
+                                Delete selected todos
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+                <md-button aria-label="Open menu" class="md-icon-button" ng-click="ac.toggleSelectAll()">
+                    <md-icon class="material-icons">&#xE834;</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <div flex>
+            <md-content>
+                <md-list>
+                    <md-list-item ng-repeat="item in ac.data track by item.id">
+                        <p>{{ item.title }}</p>
+                        <md-checkbox class="md-secondary" ng-model="item.checked"></md-checkbox>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+        </div>
+    </div>
+
+    </body>
+</html>
